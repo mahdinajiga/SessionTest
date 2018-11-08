@@ -91,28 +91,21 @@ app.post('/signup', function (req, res) {
             });
             var newUser = { id: req.body.id, password: req.body.password };
             Users.push(newUser);
-            
+            */
             var userData = {
                 email: "info@mahdinaji.com",
                 username: req.body.id,
                 password: req.body.password,
                 passwordConf: req.body.password,
-            }*/
-            var newUser = new User({email: "info@mahdinaji.com",
-                username: req.body.id,
-                password: req.body.password,
-                passwordConf: req.body.password
-            });
+            }
             console.log("UserAdding");
-            newUser.save(function (err,User) {
-                if(err)
-                {
-                    res.render('signup', {message: "Database error"});
-                }
-                else
-                {
+            //use schema.create to insert data into the db
+            User.create(userData, function (err, user) {
+                if (err) {
+                    return next(err)
+                } else {
                     console.log("UserAdded");
-                    req.session.user = userData;
+                    req.session.user = user;
                     res.redirect('/protected_page');
                 }
             });
