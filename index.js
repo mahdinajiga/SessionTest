@@ -155,10 +155,11 @@ app.post('/login', function (req, res) {
                             res.redirect('/protected_page');
                         }                        
                     });
+                    
+                    res.render('login', { message: "Invalid credentials!" });
                 }
             });
 
-            res.render('login', { message: "Invalid credentials!" });
         }
     }
 });
