@@ -7,6 +7,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var MemcachedStore = require('connect-memcached')(session);
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/my_db');
 var UserSchema = new mongoose.Schema({
     email: {
         type: String,
