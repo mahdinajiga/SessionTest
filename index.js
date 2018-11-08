@@ -150,7 +150,7 @@ app.post('/login', function (req, res) {
                     res.forEach(element => {
                         if(element.password == req.body.password)
                         {
-                            req.session.user = user;
+                            req.session.user = element;
                             res.redirect('/protected_page');
                         }                        
                     });
