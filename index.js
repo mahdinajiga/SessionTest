@@ -82,14 +82,14 @@ app.post('/signup', function (req, res) {
             res.status("400");
             res.send("Invalid details!");
         } else {
-            User.find({username : req.body.id},function (err,res) {
+            User.find({username : req.body.id},function (err,resses) {
                 if(err)
                 {
                     console.log(err);
                 } 
                 else
                 {
-                    if(res.length != 0)
+                    if(resses.length != 0)
                     {
                         res.render('signup', { message: "User Already Exists! Login or choose another user id" });
                     }
