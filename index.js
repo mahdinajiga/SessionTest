@@ -6,7 +6,6 @@ var upload = multer();
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var MemcachedStore = require('connect-memcached')(session);
-var bcrypt = require('bcrypt');
 var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
     email: {
