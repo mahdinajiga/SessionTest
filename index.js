@@ -5,7 +5,7 @@ var multer = require('multer');
 var upload = multer();
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
-var MemcachedStore = require('connect-memcached');
+var MemcachedStore = require('connect-memcached')(session);
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
