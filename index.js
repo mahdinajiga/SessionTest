@@ -140,14 +140,14 @@ app.post('/login', function (req, res) {
             res.render('login', { message: "Please enter both id and password" });
         } else {
 
-            User.find({username : req.body.id},function (err,res) {
+            User.find({username : req.body.id},function (err,resses) {
                 if(err)
                 {
                     console.log(err);
                 } 
                 else
                 {
-                    res.forEach(element => {
+                    resses.forEach(element => {
                         if(element.password == req.body.password)
                         {
                             req.session.user = element;
