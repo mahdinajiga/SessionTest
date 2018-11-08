@@ -15,7 +15,12 @@ app.use(upload.array());
 app.use(cookieParser());
 app.use(session({
     secret: 'E7V49SX1CSV68DFS79TG46E5T3DSG1G3',
-    key: 'user_sid'
+    key: 'user_sid',
+    proxy   : 'true',
+    store   : new MemcachedStore({
+      hosts: ['127.0.0.1:11211'], //this should be where your Memcached server is running
+      secret: '79DSSEE6V37V49G1GG468DX1CFS5T3ST' // Optionally use transparent encryption for memcache session data 
+  })
 }));
 
 
