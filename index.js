@@ -147,6 +147,7 @@ app.post('/login', function (req, res) {
                 } 
                 else
                 {
+                    console.log(resses);
                     resses.forEach(element => {
                         if(element.password == req.body.password)
                         {
