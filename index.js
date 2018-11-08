@@ -82,34 +82,40 @@ app.post('/signup', function (req, res) {
             res.status("400");
             res.send("Invalid details!");
         } else {
-            /*
-            Users.filter(function (user) {
-                if (user.id === req.body.id) {
-                    res.render('signup', {
-                        message: "User Already Exists! Login or choose another user id"
-                    });
+            User.find({username : req.body.id},function (err,res) {
+                if(err)
+                {
+                    console.log(err);
+                } 
+                else
+                {
+                    if(res.length != 0)
+                    {
+                        res.render('signup', { message: "User Already Exists! Login or choose another user id" });
+                    }
+                    else
+                    {
+                        var userData = {
+                            email: "info@mahdinaji.com",
+                            username: req.body.id,
+                            password: req.body.password,
+                            passwordConf: req.body.password,
+                        }
+                        //console.log("UserAdding");
+                        //use schema.create to insert data into the db
+                        User.create(userData, function (err, user) {
+                            if (err) {
+                                return next(err)
+                            } else {
+                                //console.log("UserAdded");
+                                req.session.user = user;
+                                res.redirect('/protected_page');
+                            }
+                        });
+                    }
                 }
             });
-            var newUser = { id: req.body.id, password: req.body.password };
-            Users.push(newUser);
-            */
-            var userData = {
-                email: "info@mahdinaji.com",
-                username: req.body.id,
-                password: req.body.password,
-                passwordConf: req.body.password,
-            }
-            console.log("UserAdding");
-            //use schema.create to insert data into the db
-            User.create(userData, function (err, user) {
-                if (err) {
-                    return next(err)
-                } else {
-                    console.log("UserAdded");
-                    req.session.user = user;
-                    res.redirect('/protected_page');
-                }
-            });
+            
         }
     }
 });
