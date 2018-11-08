@@ -103,7 +103,7 @@ app.post('/signup', function (req, res) {
                 password: req.body.password,
                 passwordConf: req.body.password
             });
-            
+            console.log("UserAdding");
             newUser.save(function (err,User) {
                 if(err)
                 {
@@ -111,6 +111,7 @@ app.post('/signup', function (req, res) {
                 }
                 else
                 {
+                    console.log("UserAdded");
                     req.session.user = userData;
                     res.redirect('/protected_page');
                 }
