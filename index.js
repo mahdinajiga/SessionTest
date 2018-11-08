@@ -158,7 +158,7 @@ app.post('/login', function (req, res) {
 
 app.get('/protected_page', function (req, res) {
     if (req.session.user) {
-        res.render('protected_page', { id: req.session.user.id });
+        res.render('protected_page', { id: req.session.user.username });
     } else {
         res.render('protected_page');
     }
