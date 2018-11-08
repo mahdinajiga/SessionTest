@@ -1,0 +1,29 @@
+
+<html>
+
+<head>
+	<p>
+		<font size="1" color="black"><a href="http://t.me/TNEGABSU" target="_blank">@TNEGABSU</a></font>
+	</p>
+	<% include ./index.css.ejs %>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Protected page</title>
+</head>
+
+<body>
+	<div class="contain">
+
+			<% if(locals.id){ %>
+				<div>
+                <p>Hey <%= id %>, How are you doing today? </p>
+                <p>Want to log out? <a href="/logout">Logout</a> </p>
+                </div>
+			  <% } else{ %>  
+				403 :::  you do not have permission to visit this page.
+				<p><a href="/login">Login</a></p>
+			 <% } %>
+
+	</div>
+</body>
+
+</html>
